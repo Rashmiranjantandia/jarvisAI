@@ -615,7 +615,9 @@ export default function VoicePanel() {
               ]);
             }
           }
-          // else: still inside the same clap event window — skip until it ends
+          // else: still inside the same clap event window — skip until amplitude drops
+          // This prevents a single clap from being counted multiple times across
+          // consecutive 30ms ticks where amplitude stays above threshold.
         } else {
           // Amplitude is below threshold.
           if (inClapWindowRef.current) {
