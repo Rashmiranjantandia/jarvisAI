@@ -322,20 +322,22 @@ export default function VoicePanel() {
     sensitivityRef.current = clapSensitivity;
   }, [clapSensitivity]);
 
-  // Resume suspended AudioContext when tab regains focus
+  // Resume suspended AudioContext when tab regains focus.
+  // Browsers automatically suspend AudioContext when the tab is hidden
+  // (to conserve battery/CPU). We must call .resume() to restart clap detection.
   useEffect(() => {
     const handleVisibility = () => {
       if (document.visibilityState === "visible" && audioCtxRef.current) {
         if (audioCtxRef.current.state === "suspended") {
           audioCtxRef.current.resume().then(() => {
             setContextSuspended(false);
-            console.log("[JARVIS Clap] AudioContext resumed after tab focus");
+            console.log("[JARVIS AudioCtx] Resumed after tab became visible");
           });
         }
       } else if (document.visibilityState === "hidden" && audioCtxRef.current) {
         if (audioCtxRef.current.state === "suspended" || audioCtxRef.current.state === "running") {
           setContextSuspended(true);
-          console.log("[JARVIS Clap] Tab hidden — AudioContext may suspend. Clap detection paused by browser.");
+          console.log("[JARVIS AudioCtx] Tab hidden — browser may suspend AudioContext");
         }
       }
     };
