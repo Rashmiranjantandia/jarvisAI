@@ -284,6 +284,9 @@ export default function VoicePanel() {
     if (preferred) utterance.voice = preferred;
 
     utterance.onstart = () => {
+      // Lock: while TTS is playing, mic must not detect claps.
+      // Without this, speaker output reaches the mic and triggers a
+      // second activation immediately after the first.
       isSpeakingRef.current = true;
       setVoiceState("speaking");
     };
@@ -915,7 +918,8 @@ export default function VoicePanel() {
                 </button>
               </div>
               <p className="text-[10px] text-cyan-400/25 leading-relaxed">
-                Clap twice within 900ms. Enable detection first, then calibrate in a quiet environment.
+                Double-clap twice within 900ms to trigger. Enable detection first,
+                then calibrate in a quiet environment for accurate noise floor measurement.
               </p>
             </div>
 
