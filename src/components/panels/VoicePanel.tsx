@@ -637,10 +637,12 @@ export default function VoicePanel() {
       }, 30);
 
       // ── Waveform visualization loop (every 60ms — visual only) ─────────────
+      // Reads time-domain data (waveform) rather than frequency data for a
+      // more natural-looking audio visualizer. Samples 24 evenly-spaced points
+      // and converts to absolute deviation from the centre (128) so silence = 0.
       waveformRef.current = setInterval(() => {
         if (audioCtx.state !== "running") return;
         analyser.getByteTimeDomainData(timeData);
-        // Sample 24 evenly-spaced points from time domain data
         const step = Math.floor(timeData.length / 24);
         const bars = Array.from({ length: 24 }, (_, i) => {
           const val = timeData[i * step] ?? 128;
