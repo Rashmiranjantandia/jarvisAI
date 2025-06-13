@@ -444,7 +444,7 @@ export default function VoicePanel() {
         setClapSensitivity(newSensitivity);
         setCalibrating(false);
         console.log(`[JARVIS Clap] Calibration complete. Noise floor: ${newFloor}, Threshold set to: ${newSensitivity}`);
-        toast.success(`Calibrated — threshold set to ${newSensitivity} (noise floor: ${newFloor})`);
+        toast.success(`Calibration complete — noise floor: ${newFloor}, threshold: ${newSensitivity}`);
       }
     }, 50);
   }, []);
@@ -658,7 +658,9 @@ export default function VoicePanel() {
     }
   }, [clapEnabled, addNotification]);
 
-  // Cleanup on unmount
+  // Cleanup on unmount — stop all audio processing and release microphone.
+  // Critical: failing to stop the MediaStream keeps the browser mic indicator
+  // active and prevents other apps from accessing the microphone.
   useEffect(() => {
     return () => {
       clapDetectRef.current && clearInterval(clapDetectRef.current);
