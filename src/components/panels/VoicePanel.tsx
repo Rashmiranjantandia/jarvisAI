@@ -291,10 +291,12 @@ export default function VoicePanel() {
       setVoiceState("speaking");
     };
     utterance.onend = () => {
+      // Unlock: TTS finished, safe to resume clap detection.
       isSpeakingRef.current = false;
       setVoiceState("idle");
     };
     utterance.onerror = () => {
+      // Also unlock on error to prevent permanent lock
       isSpeakingRef.current = false;
       setVoiceState("idle");
     };
@@ -548,7 +550,8 @@ export default function VoicePanel() {
         prevPeakRef.current = peak;
 
         // Smoothed peak for UI display only (exponential moving average α=0.3).
-        // Keeps the amplitude meter visually stable without affecting detection.
+        // Formula: smoothed = smoothed * 0.7 + peak * 0.3
+        // Keeps the amplitude meter visually stable without affecting detection logic.
         smoothedPeakRef.current = smoothedPeakRef.current * 0.7 + peak * 0.3;
         setMicLevel(Math.round(smoothedPeakRef.current));
 
