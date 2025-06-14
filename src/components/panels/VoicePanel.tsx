@@ -634,7 +634,8 @@ export default function VoicePanel() {
           }
           // Track the last time we were silent (for Guard 5 above).
           lastSilentTimeRef.current = now;
-          // Auto-reset first clap if too much time has passed (>900ms = sequence abandoned).
+          // Auto-reset first clap if the sequence window expired (> 900ms gap).
+          // This ensures a single isolated clap never blocks future detection.
           if (lastClapTimeRef.current !== 0 && gap > 900) {
             clapCountRef.current = 0;
             lastClapTimeRef.current = 0;
