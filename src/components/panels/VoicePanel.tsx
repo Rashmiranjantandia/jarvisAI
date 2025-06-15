@@ -594,8 +594,9 @@ export default function VoicePanel() {
                 inClapWindowRef.current = false;
                 activationCooldownRef.current = now; // start 3s immunity window
 
+                // State machine transition complete: Clap1 → Clap2 → ACTIVATION
                 const msg = buildContextSummaryRef.current();
-                console.log(`[JARVIS Clap] ✓ ACTIVATED — peak=${peak} rise=${rise}`);
+                console.log(`[JARVIS Clap] ✓ ACTIVATED — peak=${peak} rise=${rise} gap=${gap}ms`);
                 setClapDebugLog((prev) => [
                   `${new Date().toLocaleTimeString()} ✓ ACTIVATED — peak ${peak} rise ${rise}`,
                   ...prev.slice(0, 19),
