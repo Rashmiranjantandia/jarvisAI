@@ -393,6 +393,7 @@ export default function VoicePanel() {
     setTimeout(() => {
       speak(responseText);
       incrementStat("voiceInteractions");
+      // Track voice command in activity feed for real-time logging
       addActivity({ type: "voice", title: "Voice Command", description: input.slice(0, 60) });
     }, 300);
   }, [tasks, buildContextSummary, speak, incrementStat, addActivity, setVoiceState]);
