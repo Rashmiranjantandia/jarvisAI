@@ -88,7 +88,7 @@ interface JarvisStore {
 export const useJarvisStore = create<JarvisStore>()(
   persist(
     (set, get) => ({
-      // UI State
+      // UI State — not persisted (always resets to dashboard on reload)
       sidebarOpen: true,
       activePanel: "dashboard",
       setSidebarOpen: (open) => set({ sidebarOpen: open }),
