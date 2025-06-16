@@ -65,6 +65,8 @@ export default function JarvisOS() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [setActivePanel]);
 
+  // Panel registry — dynamic import ensures each panel is code-split.
+  // Only the active panel's bundle is executed; idle panels stay unloaded.
   const ActivePanel = PANELS[activePanel] ?? DashboardPanel;
 
   return (
