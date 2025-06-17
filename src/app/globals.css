@@ -136,6 +136,7 @@
 }
 
 /* Typing cursor */
+/* Responsive panel layout helpers */
 .cursor-blink::after {
   content: "▋";
   animation: blink 1s step-end infinite;
