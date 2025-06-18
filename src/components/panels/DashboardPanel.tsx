@@ -158,6 +158,9 @@ export default function DashboardPanel() {
             <p className="text-xs text-cyan-400/40 mt-1 font-mono">
               {time.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
             </p>
+            <p className="text-[10px] text-cyan-400/25 mt-0.5 font-mono">
+              Uptime: {stats.uptime}m
+            </p>
           </div>
         </div>
 
