@@ -139,6 +139,10 @@ export default function SettingsPanel() {
                 ))}
               </div>
             </div>
+            {/* Provider hint */}
+            <p className="text-[10px] text-cyan-400/25">
+              {aiProvider === "anthropic" ? "Direct Anthropic SDK streaming" : "OpenRouter unified API — 100+ models"}
+            </p>
           </Section>
         </motion.div>
 
