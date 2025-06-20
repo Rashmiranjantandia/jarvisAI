@@ -102,7 +102,8 @@ export const useJarvisStore = create<JarvisStore>()(
       setAIModel: (model) => set({ aiModel: model }),
       setApiKey: (key) => set({ apiKey: key }),
 
-      // Chat
+      // Chat \u2014 sessions are the core AI memory unit. Each session persists
+      // its full message history to localStorage for cross-reload continuity.
       sessions: [],
       activeSessionId: null,
       createSession: () => {
