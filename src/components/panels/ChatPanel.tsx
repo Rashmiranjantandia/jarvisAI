@@ -212,6 +212,8 @@ export default function ChatPanel() {
 
   const activeSession = getActiveSession();
 
+  // Auto-scroll to latest message whenever the active session's message list changes.
+  // Uses 'smooth' behavior so streaming responses feel natural and readable.
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [activeSession?.messages]);
