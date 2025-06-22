@@ -182,7 +182,7 @@ export default function DashboardPanel() {
         <StatCard icon={CheckSquare} label="Pending Tasks" value={pendingTasks} color="cyan" />
         <StatCard icon={CheckSquare} label="Completed" value={completedTasks} color="green" sub="tasks done" />
         <StatCard icon={MessageSquare} label="AI Sessions" value={sessions.length} color="purple" />
-        <StatCard icon={Zap} label="Notifications" value={unreadNotifs} color="orange" sub="unread" />
+        <StatCard icon={Zap} label="Notifications" value={unreadNotifs} color="orange" sub={isOnline ? "online" : "offline"} />
       </motion.div>
 
       {/* System Monitor + Activity */}
