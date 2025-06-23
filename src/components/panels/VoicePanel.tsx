@@ -672,6 +672,7 @@ export default function VoicePanel() {
   // Cleanup on unmount — stop all audio processing and release microphone.
   // Critical: failing to stop the MediaStream keeps the browser mic indicator
   // active and prevents other apps from accessing the microphone.
+  // Order matters: clear intervals first, then stop tracks, then close AudioContext.
   useEffect(() => {
     return () => {
       clapDetectRef.current && clearInterval(clapDetectRef.current);
