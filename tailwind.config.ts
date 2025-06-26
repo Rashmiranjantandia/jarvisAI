@@ -78,6 +78,7 @@ const config: Config = {
         "spin-slow": "spin 8s linear infinite",
         "border-glow": "borderGlow 2s ease-in-out infinite",
         "slide-in-right": "slideInRight 0.3s ease-out",
+        "fade-in": "fadeIn 0.4s ease-out",
         "slide-in-left": "slideInLeft 0.3s ease-out",
         "fade-in-up": "fadeInUp 0.4s ease-out",
         "waveform": "waveform 1.2s ease-in-out infinite",
