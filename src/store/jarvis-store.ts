@@ -333,6 +333,7 @@ export const useJarvisStore = create<JarvisStore>()(
       // Optimized: only persist data that must survive page reloads.
       // UI state (activePanel, sidebarOpen) is intentionally excluded so
       // the app always starts at the dashboard, preventing stale panel state.
+      // Storage size: ~50KB typical (dominated by chat session history).
       partialize: (state) => ({
         sessions: state.sessions,
         tasks: state.tasks,
