@@ -29,7 +29,7 @@ const PANELS: Record<string, React.ComponentType> = {
 };
 
 export default function JarvisOS() {
-  const { activePanel, incrementStat, setActivePanel } = useJarvisStore();
+  const { activePanel, incrementStat, setActivePanel, setSidebarOpen } = useJarvisStore();
 
   // Increment uptime every minute
   useEffect(() => {
@@ -59,6 +59,10 @@ export default function JarvisOS() {
           e.preventDefault();
           setActivePanel(panel);
         }
+      }
+      // Escape to toggle sidebar on mobile
+      if (e.key === "Escape" && !e.altKey && !e.ctrlKey && !e.metaKey) {
+        setSidebarOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
