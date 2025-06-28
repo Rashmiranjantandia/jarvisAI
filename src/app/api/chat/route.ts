@@ -33,8 +33,9 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error occurred";
     console.error("[JARVIS API] Chat error:", message);
+    const status = message.includes("rate limit") || message.includes("429") ? 429 : 500;
     return new Response(JSON.stringify({ error: message }), {
-      status: 500,
+      status,
       headers: { "Content-Type": "application/json" },
     });
   }
