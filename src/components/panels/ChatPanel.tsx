@@ -309,6 +309,8 @@ export default function ChatPanel() {
       if (err instanceof Error && err.name !== "AbortError") {
         const errorMsg = err.message.includes("OpenRouter")
           ? err.message
+          : err.message.includes("rate limit") || err.message.includes("429")
+          ? `⚠️ Rate limited. Please wait a moment and try again.`
           : `Error: ${err.message}`;
         finishStreaming(sessionId!, assistantMsgId);
         updateMessage(sessionId!, assistantMsgId, errorMsg);
