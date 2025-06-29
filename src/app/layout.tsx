@@ -9,8 +9,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "JARVIS OS — AI Operating System",
-  description: "Futuristic AI-powered productivity operating system",
+  title: "JARVIS OS — AI Command Center",
+  description: "A futuristic AI assistant dashboard with real-time voice interaction, clap detection, AI chat, task management, and memory persistence.",
+  keywords: ["AI assistant", "JARVIS", "voice control", "AI dashboard", "OpenRouter", "Next.js"],
+  authors: [{ name: "Rashmiranjan Tandia" }],
   icons: {
     icon: "/favicon.ico",
   },
